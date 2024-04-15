@@ -4,6 +4,9 @@ Farzana Ahamed Bhuiyan (Lead)
 Akond Rahman 
 Oct 20, 2020 
 Holder for constants needed to implement FAME-ML 
+
+Simple change for COMP 5710 project part 4d.
+4/15/24
 '''
 
 FUNC_KW = 'func'
