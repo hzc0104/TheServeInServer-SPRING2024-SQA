@@ -1,74 +1,74 @@
-import hypothesis.strategies as st
-from hypothesis import given
 import subprocess
 import os
-from git.repo.miner.py import (deleteRepo, makeChunks, cloneRepo, dumpContentIntoFile,
-                         getPythonCount, getMLLibraryUsage) 
+import shutil
+import time
+from datetime import datetime
+
+#This method is fuzzing for a timestamp that follows along with generic time display.
+def fuzz_giveTimeStamp():
+    def giveTimeStamp():
+        ts = time.time()
+        str = datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+        return str
+    print(giveTimeStamp())
+
+#This method is fuzzing the deletion of a repos whether done or not. 
+def fuzz_deleteRepo():
+    def deleteRepo(dirName, typeA):
+        print(':::' + typeA+ ':::Deleting ', dirName)
+        try:
+            if os.path.exists(dirName):
+                shutil.rmtree(dirName)
+                print("Directory", dirName, "is deleted now.")
+            else:
+                print("Directory", dirName, "isn't here y'all.")
+        except Exception as e:
+            print("Failure in deleting directory:", e)
  
-# Fuzzing deleteRepo() function
-@given(st.text(), st.text())
-def test_deleteRepo(dirName, type_):
-    try:
-        deleteRepo(dirName, type_)
-        # Print or log the deletion message to check for errors
-        print("Deleted", type_, "in", dirName)
-    except Exception as e:
-        print(f"Error in deleteRepo({dirName}, {type_}): {e}")
+    fuzz_dirName = "test_directory"
+    fuzz_typeA = "test_type"
+    deleteRepo(fuzz_dirName, fuzz_typeA)
  
-# Fuzzing makeChunks() function
-@given(st.lists(st.text()), st.integers(min_value=1, max_value=10))
-def test_makeChunks(the_list, size_):
-    try:
-        chunks = makeChunks(the_list, size_)
-        # Print or log the chunks to check for errors
-        print("Chunks:", list(chunks))
-    except Exception as e:
-        print(f"Error in makeChunks({the_list}, {size_}): {e}")
+#This third method is related to whether the content was actually put into the file or not.
+
+def fuzz_dumpContentIntoFile():
+    def dumpContentIntoFile(sP, fP):
+        fileToWrite = open(fP, 'w')
+        fileToWrite.write(sP)
+        fileToWrite.close()
+        return str(os.stat(fP).st_size)
+    fuzz_sP = "Testing if it worked for content to write into file."
+    fuzz_fP = "test_file.txt"
+    print("Once writte, your file size is:", dumpContentIntoFile(fuzz_sP, fuzz_fP))
  
-# Fuzzing cloneRepo() function
-@given(st.text(), st.text())
-def test_cloneRepo(repo_name, target_dir):
-    try:
-        cloneRepo(repo_name, target_dir)
-        # Print or log the cloning message to check for errors
-        print("Cloned", repo_name, "to", target_dir)
-    except Exception as e:
-        print(f"Error in cloneRepo({repo_name}, {target_dir}): {e}")
+# This fourth methid is fuzzing the makeChunks method
+def fuzz_makeChunks():
+    def makeChunks(aList, sizeA):
+        for i in range(0, len(aList), sizeA):
+            yield aList[i:i + sizeA]
+    fuzz_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    fuzz_size = 3
+    for chunk in makeChunks(fuzz_list, fuzz_size):
+        print(chunk)
  
-# Fuzzing dumpContentIntoFile() function
-@given(st.text(), st.text())
-def test_dumpContentIntoFile(strP, fileP):
-    try:
-        size = dumpContentIntoFile(strP, fileP)
-        # Print or log the file size to check for errors
-        print("Dumped content into", fileP, "with size", size)
-    except Exception as e:
-        print(f"Error in dumpContentIntoFile({strP}, {fileP}): {e}")
+# This fifth method is just fuzzing on the method for the cloneRepo 
+def fuzz_cloneRepo():
+    def cloneRepo(repoName, targetDir):
+        cmdA = "git clone " + repoName + " " + targetDir
+        try:
+            subprocess.check_output(['bash', '-c', cmdA])
+            print("Repository cloned successfully:", repoName)
+        except subprocess.CalledProcessError:
+            print('Skipping this repo ... trouble cloning repo:', repoName)
  
-# Fuzzing getPythonCount() function
-@given(st.text())
-def test_getPythonCount(input_dir):
-    try:
-        count = getPythonCount(input_dir)
-        # Print or log the count to check for errors
-        print("Python file count in", input_dir, ":", count)
-    except Exception as e:
-        print(f"Error in getPythonCount({input_dir}): {e}")
+    fuzz_repoName = "https://github.com/username/repository.git"
+    fuzz_targetDir = "/path/to/target_directory"
+
+    cloneRepo(fuzz_repoName, fuzz_targetDir)
  
-# Run fuzz tests for each function
 if __name__ == "__main__":
-    print("Running fuzz tests for deleteRepo()...")
-    for _ in range(5):
-        test_deleteRepo()
-    print("Running fuzz tests for makeChunks()...")
-    for _ in range(5):
-        test_makeChunks()
-    print("Running fuzz tests for cloneRepo()...")
-    for _ in range(5):
-        test_cloneRepo()
-    print("Running fuzz tests for dumpContentIntoFile()...")
-    for _ in range(5):
-        test_dumpContentIntoFile()
-    print("Running fuzz tests for getPythonCount()...")
-    for _ in range(5):
-        test_getPythonCount()
+    fuzz_giveTimeStamp()
+    fuzz_deleteRepo()
+    fuzz_dumpContentIntoFile()
+    fuzz_makeChunks()
+    fuzz_cloneRepo()
