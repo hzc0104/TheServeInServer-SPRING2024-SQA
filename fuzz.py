@@ -8,8 +8,6 @@ import time
 
 from datetime import datetime
 
-import numpy as np
- 
 # Method 1: Fuzz giveTimeStamp() Method
 
 def fuzz_giveTimeStamp():
