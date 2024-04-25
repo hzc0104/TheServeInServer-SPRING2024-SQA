@@ -2,7 +2,7 @@ import hypothesis.strategies as st
 from hypothesis import given
 import subprocess
 import os
-from "git.repo.miner" import (deleteRepo, makeChunks, cloneRepo, dumpContentIntoFile,
+from git.repo.miner import (deleteRepo, makeChunks, cloneRepo, dumpContentIntoFile,
                          getPythonCount, getMLLibraryUsage) 
  
 # Fuzzing deleteRepo() function
