@@ -14,6 +14,7 @@ from collections import Counter
 import shutil 
 
 def getBranch(path):
+    log(0)
     dict_ = { 
              '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/NATURAL_LANGUAGE_PROCESSING/magic282@MXNMT':'next' , 
              '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/zetaops@zengine':'develop', 
@@ -47,9 +48,11 @@ def getBranch(path):
         return 'master' 
 
 def getFileLength(file_):
+    log(1)
     return sum(1 for line in open(file_, encoding='latin-1'))
 
 def getDevEmailForCommit(repo_path_param, hash_):
+    log(2)
     author_emails = []
 
     cdCommand     = "cd " + repo_path_param + " ; "
@@ -71,6 +74,7 @@ def getDevEmailForCommit(repo_path_param, hash_):
     return author_emails  
 
 def getDevDayCommits(full_path_to_repo, branchName='master', explore=1000):
+    log(3)
     repo_emails = []
     all_commits = []
     repo_emails = []
@@ -103,10 +107,12 @@ def getDevDayCommits(full_path_to_repo, branchName='master', explore=1000):
     return len(repo_emails) , len(all_commits) , all_day_list
 
 def days_between(d1_, d2_): ## pass in date time objects 
+    log(4)
     return abs((d2_ - d1_).days)
 
 
 def getAllCommits(all_repos):
+    log(5)
     full_list = []
     total_commits  = 0 
     total_devs     = 0 
@@ -137,6 +143,7 @@ def getAllCommits(all_repos):
            
 
 def getAllFileCount(df_):
+    log(6)
     tot_fil_size = 0 
     file_names_ =  np.unique( df_['FILE_FULL_PATH'].tolist() )
     for file_ in file_names_:
@@ -145,6 +152,7 @@ def getAllFileCount(df_):
 
 
 def getGeneralStats(all_dataset_list):
+    log(7)
     all_repos = [] 
     for result_file in all_dataset_list:
         print('='*50)
@@ -171,6 +179,7 @@ def getGeneralStats(all_dataset_list):
 
 
 def getDevEmails(ds_list): 
+    log(8)
     repo_emails = [] 
     for result_file in ds_list:
         print('='*50)
@@ -204,6 +213,7 @@ def getDevEmails(ds_list):
 
 
 def cleanAllButPy(dir_name):
+    log(9)
     valid_, non_valid = [], []
     for root_, dirs, files_ in os.walk(dir_name):
        for file_ in files_:
@@ -220,7 +230,15 @@ def cleanAllButPy(dir_name):
     print('removed {} non-Python files, kept {} Python files #savespace '.format(len(non_valid), len(valid_)) )
     print("="*50 )
 
+log = {0,0,0,0,0,0,0,0,0,0}
+'''
+this function will log the uses of all the functions within the code while it is running, and it will store this list 
+'''
+def logger(func):
+    log[func] += 1
 
+def exit_function():
+    print(*log)
 
 if __name__=='__main__':
     MODEL_ZOO_RESULTS_FILE = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_MODELZOO.csv'
@@ -231,7 +249,8 @@ if __name__=='__main__':
 
     
     getGeneralStats(all_datasets)
-
+    
+    atexit.register(exit_function, '',)
 
 
     '''
