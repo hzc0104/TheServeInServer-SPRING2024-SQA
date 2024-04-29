@@ -1,0 +1,141 @@
+Run started:2024-04-15 18:01:49.455361
+
+Test results:
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: MLForensics-farzana/empirical/dataset.stats.py:12:0
+11	from datetime import datetime
+12	import subprocess
+13	from collections import Counter 
+
+--------------------------------------------------
+>> Issue: [B607:start_process_with_partial_path] Starting a process with a partial executable path
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b607_start_process_with_partial_path.html
+   Location: MLForensics-farzana/empirical/dataset.stats.py:59:24
+58	
+59	    author_emails = str(subprocess.check_output(['bash','-c', command2Run]))
+60	    author_emails = author_emails.split('\n')
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: MLForensics-farzana/empirical/dataset.stats.py:59:24
+58	
+59	    author_emails = str(subprocess.check_output(['bash','-c', command2Run]))
+60	    author_emails = author_emails.split('\n')
+
+--------------------------------------------------
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: MLForensics-farzana/mining/git.repo.miner.py:10:0
+9	import csv 
+10	import subprocess
+11	import numpy as np
+
+--------------------------------------------------
+>> Issue: [B408:blacklist] Using minidom to parse untrusted XML data is known to be vulnerable to XML attacks. Replace minidom with the equivalent defusedxml package, or make sure defusedxml.defuse_stdlib() is called.
+   Severity: Low   Confidence: High
+   CWE: CWE-20 (https://cwe.mitre.org/data/definitions/20.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/blacklists/blacklist_imports.html#b408-import-xml-minidom
+   Location: MLForensics-farzana/mining/git.repo.miner.py:15:0
+14	from git import exc 
+15	from xml.dom import minidom
+16	from xml.parsers.expat import ExpatError
+
+--------------------------------------------------
+>> Issue: [B607:start_process_with_partial_path] Starting a process with a partial executable path
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b607_start_process_with_partial_path.html
+   Location: MLForensics-farzana/mining/git.repo.miner.py:37:7
+36	    try:
+37	       subprocess.check_output(['bash','-c', cmd_])    
+38	    except subprocess.CalledProcessError:
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: MLForensics-farzana/mining/git.repo.miner.py:37:7
+36	    try:
+37	       subprocess.check_output(['bash','-c', cmd_])    
+38	    except subprocess.CalledProcessError:
+
+--------------------------------------------------
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: MLForensics-farzana/mining/mining.py:7:0
+6	from datetime import datetime
+7	import subprocess
+8	import shutil
+
+--------------------------------------------------
+>> Issue: [B607:start_process_with_partial_path] Starting a process with a partial executable path
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b607_start_process_with_partial_path.html
+   Location: MLForensics-farzana/mining/mining.py:43:7
+42	    try:
+43	       subprocess.check_output(['bash','-c', cmd_])    
+44	    except subprocess.CalledProcessError:
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: MLForensics-farzana/mining/mining.py:43:7
+42	    try:
+43	       subprocess.check_output(['bash','-c', cmd_])    
+44	    except subprocess.CalledProcessError:
+
+--------------------------------------------------
+>> Issue: [B607:start_process_with_partial_path] Starting a process with a partial executable path
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b607_start_process_with_partial_path.html
+   Location: MLForensics-farzana/mining/mining.py:81:24
+80	
+81	    author_emails = str(subprocess.check_output(['bash','-c', command2Run]))
+82	    author_emails = author_emails.split('\n')
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.8/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: MLForensics-farzana/mining/mining.py:81:24
+80	
+81	    author_emails = str(subprocess.check_output(['bash','-c', command2Run]))
+82	    author_emails = author_emails.split('\n')
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 2151
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 12
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 12
+Files skipped (0):
