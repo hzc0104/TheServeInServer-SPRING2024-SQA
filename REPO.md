@@ -1,5 +1,12 @@
 # The Serve In Server Reports
 ### Forensics Screenshot/Log
+![Screenshot 2024-04-29 094006](https://github.com/hzc0104/TheServeInServer-SPRING2024-SQA/assets/164685184/9271f264-ed77-4b89-b9f3-d52ccc2d7d89)
+
+![image](https://github.com/hzc0104/TheServeInServer-SPRING2024-SQA/assets/164685184/d49d4d60-c21c-45ee-9781-2419b08afd7d)
+
+![image](https://github.com/hzc0104/TheServeInServer-SPRING2024-SQA/assets/164685184/c91ef710-10a4-4c10-8ddf-522f64821285)
+
+Note: This file will use the logger function to log all of the activity and while running the forensics. The log will be produced once the program is done running. 
 
 ### Fuzzing Screenshot/Log
 <img width="1045" alt="Screenshot 2024-04-28 at 10 46 38 PM" src="https://github.com/hzc0104/TheServeInServer-SPRING2024-SQA/assets/164685184/e70c8f78-4c86-4ffa-987e-453e6665a820">
