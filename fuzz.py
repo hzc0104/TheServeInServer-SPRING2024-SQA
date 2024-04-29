@@ -61,8 +61,8 @@ def fuzz_cloneRepo():
         except subprocess.CalledProcessError:
             print('Skipping this repo ... trouble cloning repo:', repoName)
  
-    fuzz_repoName = "https://github.com/hzc0104/TheServeInServer-SPRING2024-SQA"
-    fuzz_targetDir = "/hzc0104/TheServeInServer-SPRING2024-SQA/MLForensics-farzana"
+     fuzz_repoName = "https://github.com/hzc0104/TheServeInServer-SPRING2024-SQA"
+    fuzz_targetDir = "path/to/your/desired/directory/MLForensics-farzana"
 
     cloneRepo(fuzz_repoName, fuzz_targetDir)
  
