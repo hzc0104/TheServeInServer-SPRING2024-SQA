@@ -19,6 +19,8 @@ Note: This file will use the logger function to log all of the activity and whil
 ### Pre-Commit file Screenshot
 <img width="658" alt="Screenshot 2024-04-28 at 11 02 47 PM" src="https://github.com/hzc0104/TheServeInServer-SPRING2024-SQA/assets/164685184/874e8bfb-858a-4796-b703-6c7f42b41ffb">
 
+Output of the security vulnerabilities are present in the output.csv file. 
+
 ### Report
-Our knowledge came from the collection of each other and the given workshops throughout the semester. First we unzippped the file, we created a file within .git/hooks/pre-commit to run a scan on all security weaknesses using the code: bandit . -r, creating a fuzz.py file, integrating forensics, with continous integration into github. 
+Our knowledge came from the collection of each other and the given workshops throughout the semester. First we unzippped the file, we created a file within .git/hooks/pre-commit to run a scan on all security weaknesses using the code: bandit . -r, creating a fuzz.py file, integrating forensics, with continous integration into github. Overall, this project has a taught us a lot on software quality assurance and the different ways we can approach a program. 
 
