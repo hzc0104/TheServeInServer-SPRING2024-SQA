@@ -14,7 +14,7 @@ from collections import Counter
 import shutil 
 
 def getBranch(path):
-    log(0)
+    logger(0)
     dict_ = { 
              '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/NATURAL_LANGUAGE_PROCESSING/magic282@MXNMT':'next' , 
              '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/zetaops@zengine':'develop', 
@@ -48,11 +48,11 @@ def getBranch(path):
         return 'master' 
 
 def getFileLength(file_):
-    log(1)
+    logger(1)
     return sum(1 for line in open(file_, encoding='latin-1'))
 
 def getDevEmailForCommit(repo_path_param, hash_):
-    log(2)
+    logger(2)
     author_emails = []
 
     cdCommand     = "cd " + repo_path_param + " ; "
@@ -74,7 +74,7 @@ def getDevEmailForCommit(repo_path_param, hash_):
     return author_emails  
 
 def getDevDayCommits(full_path_to_repo, branchName='master', explore=1000):
-    log(3)
+    logger(3)
     repo_emails = []
     all_commits = []
     repo_emails = []
@@ -107,12 +107,12 @@ def getDevDayCommits(full_path_to_repo, branchName='master', explore=1000):
     return len(repo_emails) , len(all_commits) , all_day_list
 
 def days_between(d1_, d2_): ## pass in date time objects 
-    log(4)
+    logger(4)
     return abs((d2_ - d1_).days)
 
 
 def getAllCommits(all_repos):
-    log(5)
+    logger(5)
     full_list = []
     total_commits  = 0 
     total_devs     = 0 
@@ -143,7 +143,7 @@ def getAllCommits(all_repos):
            
 
 def getAllFileCount(df_):
-    log(6)
+    logger(6)
     tot_fil_size = 0 
     file_names_ =  np.unique( df_['FILE_FULL_PATH'].tolist() )
     for file_ in file_names_:
@@ -152,7 +152,7 @@ def getAllFileCount(df_):
 
 
 def getGeneralStats(all_dataset_list):
-    log(7)
+    logger(7)
     all_repos = [] 
     for result_file in all_dataset_list:
         print('='*50)
@@ -179,7 +179,7 @@ def getGeneralStats(all_dataset_list):
 
 
 def getDevEmails(ds_list): 
-    log(8)
+    logger(8)
     repo_emails = [] 
     for result_file in ds_list:
         print('='*50)
@@ -213,7 +213,7 @@ def getDevEmails(ds_list):
 
 
 def cleanAllButPy(dir_name):
-    log(9)
+    logger(9)
     valid_, non_valid = [], []
     for root_, dirs, files_ in os.walk(dir_name):
        for file_ in files_:
