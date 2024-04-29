@@ -230,7 +230,7 @@ def cleanAllButPy(dir_name):
     print('removed {} non-Python files, kept {} Python files #savespace '.format(len(non_valid), len(valid_)) )
     print("="*50 )
 
-log = {0,0,0,0,0,0,0,0,0,0}
+log = [0,0,0,0,0,0,0,0,0,0]
 '''
 this function will log the uses of all the functions within the code while it is running, and it will store this list 
 '''
